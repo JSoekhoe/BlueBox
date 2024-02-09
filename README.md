@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Samenwerkingsovereenkomst voor de Ontwikkeling van een Applicatie
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Deze overeenkomst wordt aangegaan op 09-02-2024 door en tussen de volgende partijen:
+• Denzel Bendt, studentnummer 1136580,
+• Ebram Moawad, studentnummer 1198521,
+• Joerie Soekhoe, studentnummer 1201693,
+met het doel een applicatie te ontwikkelen voor het bedrijf genaamd BlueBox (hierna te noemen "de Opdracht").
 
-## About Laravel
+## 1. Doel van de Overeenkomst
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Het doel van deze overeenkomst is het vastleggen van de afspraken tussen de Teamleden met betrekking tot de ontwikkeling van de applicatie, de verdeling van de werkzaamheden, en de wijze van communicatie gedurende het project.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 2. Algemene Afspraken
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2.1 Wekelijkse Meetings
 
-## Learning Laravel
+De Teamleden komen wekelijks op vrijdag bij elkaar om het werk van de afgelopen week te bespreken. De tijd en locatie worden onderling afgesproken.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 2.2 Besluitvorming met de Opdrachtgever
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Besluiten over wat besproken wordt met de opdrachtgever worden unaniem genomen door de Teamleden.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2.3 Nakomen van Afspraken
 
-## Laravel Sponsors
+De Teamleden verplichten zich ertoe om zich aan de gemaakte afspraken te houden.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2.4 Communicatie en Transparantie
 
-### Premium Partners
+De Teamleden blijven communiceren en zijn transparant over de werkzaamheden die elk lid gaat verrichten.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 3. Verdeling van Werkzaamheden
 
-## Contributing
+De specifieke taken en verantwoordelijkheden van elk Teamlid worden als volgt vastgelegd:
+• Scrum Master: Denzel Bendt
+• Developers: Denzel Bendt, Ebram Moawad, Joerie Soekhoe
+• Specifieke Taakverdeling omtrent de applicatie is te vinden in ons scrumbord in de Azure omgeving. (https://ictwf.visualstudio.com/2024_Labs_Groep13).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 4. Omgaan met Conflicten
 
-## Code of Conduct
+In het geval van een conflict zullen de Teamleden trachten dit onderling op te lossen door middel van dialoog. Indien dit niet tot een oplossing leidt, zal een externe mediator worden ingeschakeld.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 5. Intellectueel Eigendom
 
-## Security Vulnerabilities
+Alle intellectuele eigendomsrechten met betrekking tot de te ontwikkelen applicatie zullen in gezamenlijk eigendom zijn van de Opdrachtgever, tenzij anders overeengekomen.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 6. Vertrouwelijkheid
 
-## License
+De Teamleden komen overeen om alle informatie met betrekking tot de ontwikkeling van de applicatie en de bedrijfsinformatie van BlueBox vertrouwelijk te behandelen.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 7. Slotbepalingen
+
+Deze overeenkomst kan alleen worden gewijzigd met instemming van alle Teamleden. Geschillen die voortvloeien uit deze overeenkomst worden voorgelegd aan de bevoegde mediator.
+Ondertekend door de Teamleden op 09-02-2024:
+• Handtekening Student 1: Akkoord
+• Handtekening Student 2: Akkoord
+• Handtekening Student 2: Akkoord
