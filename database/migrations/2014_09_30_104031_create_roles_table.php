@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('allowed_branches', function (Blueprint $table) { // Note the plural form
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('branches');
+            $table->string('role_name');
             $table->timestamps();
-            });
+        });
     }
 
     /**
@@ -23,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
-        Schema::dropIfExists('allowed_branches');
+        Schema::dropIfExists('roles');
     }
-
 };
