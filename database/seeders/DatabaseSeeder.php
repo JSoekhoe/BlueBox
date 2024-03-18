@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Seed branches
         $branches = [
             ['branch_name' => 'Bluebox Partners'],
             ['branch_name' => 'Family1'],
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             AllowedBranch::create($branch);
         }
 
+        // Seed roles
         $roles = [
             ['role_name' => 'admin'],
             ['role_name' => 'moderator'],
@@ -37,25 +39,75 @@ class DatabaseSeeder extends Seeder
             Role::create($role);
         }
 
-        // Retrieve the branch ID for the admin user
-        $blueboxPartnersId = AllowedBranch::where('branch_name', 'Bluebox Partners')->first()->id;
-
-        // Retrieve the role ID for the admin user
-        $adminId = Role::where('role_name', 'admin')->first()->id;
-
+        // Seed users
         $users = [
             [
                 'firstname' => 'admin',
                 'lastname' => 'admin',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('admin'),
-                'branch_id' => $blueboxPartnersId,
-                'role_id' => $adminId,
+                'branch_name' => 'Bluebox Partners',
+                'role_name' => 'admin',
             ],
+            [
+                'firstname' => 'moderator',
+                'lastname' => 'Bluebox',
+                'email' => 'Moderator@bluebox.nl',
+                'password' => bcrypt('moderator'),
+                'branch_name' => 'Bluebox Partners',
+                'role_name' => 'moderator',
+            ],
+            [
+                'firstname' => 'moderator',
+                'lastname' => 'family1',
+                'email' => 'Moderator@family1.nl',
+                'password' => bcrypt('moderator'),
+                'branch_name' => 'Family1',
+                'role_name' => 'moderator',
+            ],
+            // Add more users as needed
         ];
 
         foreach ($users as $user) {
-            User::create($user);
+            $branchId = AllowedBranch::where('branch_name', $user['branch_name'])->first()->id;
+            $roleId = Role::where('role_name', $user['role_name'])->first()->id;
+
+            User::create([
+                'firstname' => $user['firstname'],
+                'lastname' => $user['lastname'],
+                'email' => $user['email'],
+                'password' => $user['password'],
+                'branch_id' => $branchId,
+                'role_id' => $roleId,
+            ]);
+        }
+
+        // Seed customers
+        $customers = [
+            [
+                'firstname' => 'test',
+                'lastname' => 'bluebox',
+                'email' => 'bluebox1@gmail.com',
+                'branch_name' => 'Bluebox Partners',
+            ],
+            [
+                'firstname' => 'test',
+                'lastname' => 'family1',
+                'email' => 'family1@gmail.com',
+                'branch_name' => 'Family1',
+            ],
+            // Add more customers as needed
+        ];
+
+        foreach ($customers as $customer) {
+            $branchId = AllowedBranch::where('branch_name', $customer['branch_name'])->first()->id;
+
+            Customer::create([
+                'firstname' => $customer['firstname'],
+                'lastname' => $customer['lastname'],
+                'email' => $customer['email'],
+                'branch_id' => $branchId,
+            ]);
         }
     }
 }

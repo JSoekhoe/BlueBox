@@ -35,9 +35,13 @@
                         <div class="mt-4">
                             <label for="role" class="block font-medium text-sm text-gray-700">Role</label>
                             <select id="role" name="role" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>{{ $role->role_name }}</option>
-                                @endforeach
+                                @if(auth()->user()->isAdmin())
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>{{ $role->role_name }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="{{ auth()->user()->role_id }}" selected>{{ auth()->user()->role->role_name }}</option>
+                                @endif
                             </select>
                         </div>
 
@@ -45,9 +49,13 @@
                         <div class="mt-4">
                             <label for="branch" class="block font-medium text-sm text-gray-700">Branch</label>
                             <select id="branch" name="branch" class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @foreach($branches as $branch)
-                                    <option value="{{ $branch->id }}" {{ $user->branch_id == $branch->id ? 'selected' : '' }}>{{ $branch->branch_name }}</option>
-                                @endforeach
+                                @if(auth()->user()->isAdmin())
+                                    @foreach($branches as $branch)
+                                        <option value="{{ $branch->id }}" {{ $user->branch_id == $branch->id ? 'selected' : '' }}>{{ $branch->branch_name }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="{{ auth()->user()->branch_id }}" selected>{{ auth()->user()->branch->branch_name }}</option>
+                                @endif
                             </select>
                         </div>
 

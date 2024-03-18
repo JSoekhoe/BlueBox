@@ -29,4 +29,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(AllowedBranch::class);
     }
+    public function isAdmin()
+    {
+        return $this->role_id === 1;
+    }
+    public function isModerator()
+    {
+        return $this->role->role_name === 'moderator';
+    }
 }

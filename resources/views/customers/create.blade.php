@@ -33,10 +33,14 @@
                         <!-- Branch -->
                         <div class="mt-4">
                             <label for="branch">Branch</label>
-                            <select id="branch" name="branch" class="block mt-1 w-full">
-                                @foreach($branches as $branch)
-                                    <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
-                                @endforeach
+                            <select id="branch" name="branch" class="block mt-1 w-full" @if(!auth()->user()->isAdmin()) disabled @endif>
+                                @if(auth()->user()->isAdmin())
+                                    @foreach($branches as $branch)
+                                        <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="{{ auth()->user()->branch_id }}" selected>{{ auth()->user()->branch->branch_name }}</option>
+                                @endif
                             </select>
                         </div>
 

@@ -10,9 +10,15 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = Customer::with('branch')->get();
+        if (auth()->user()->isAdmin()) {
+            $customers = Customer::with('branch')->get();
+        } else {
+            $customers = Customer::where('branch_id', auth()->user()->branch_id)->with('branch')->get();
+        }
+
         return view('customers.index', compact('customers'));
     }
+
 
     public function create()
     {

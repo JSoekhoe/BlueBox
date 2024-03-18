@@ -6,12 +6,22 @@ use App\Models\AllowedBranch;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('role', 'branch')->get();
+        $user = Auth::user();
+        $users = User::query();
+
+        // Apply branch-based access control
+        if (!$user->isAdmin()) {
+            $users->where('branch_id', $user->branch_id);
+        }
+
+        $users = $users->get();
+
         return view('users.index', compact('users'));
     }
 
