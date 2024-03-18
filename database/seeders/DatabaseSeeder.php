@@ -65,6 +65,14 @@ class DatabaseSeeder extends Seeder
                 'branch_name' => 'Family1',
                 'role_name' => 'moderator',
             ],
+            [
+                'firstname' => 'employee',
+                'lastname' => 'bluebox',
+                'email' => 'employee@bluebox.nl',
+                'password' => bcrypt('employee'),
+                'branch_name' => 'Family1',
+                'role_name' => 'moderator',
+            ],
             // Add more users as needed
         ];
 
