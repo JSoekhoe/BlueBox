@@ -37,4 +37,8 @@ class User extends Authenticatable
     {
         return $this->role->role_name === 'moderator';
     }
+    public function isEmployee()
+    {
+        return $this->role->role_name === 'Employee';
+    }
 }
