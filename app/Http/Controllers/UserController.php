@@ -12,15 +12,15 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $users = User::query();
+        $users = [];
 
-        // Apply branch-based access control
-        if (!$user->isAdmin()) {
-            $users->where('branch_id', $user->branch_id);
+        if (auth()->user()->isAdmin()) {
+            // If the user is an admin, fetch all users
+            $users = User::all();
+        } else {
+            // If the user is not an admin, fetch users based on their branch
+            $users = User::where('branch_id', auth()->user()->branch_id)->get();
         }
-
-        $users = $users->get();
 
         return view('users.index', compact('users'));
     }
