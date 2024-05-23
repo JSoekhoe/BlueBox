@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\PDFcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,15 +49,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{user}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });
 
-
-
-
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/parents', [AdminController::class, 'index'])->name('admin.parents.index');
     Route::get('/admin/add-parent', [AdminController::class, 'showAddParentForm'])->name('admin.showAddParentForm');
     Route::post('/admin/add-parent', [AdminController::class, 'storeParent'])->name('admin.storeParent');
 });
 
-
+Route::middleware('auth')->group(function () {
+    Route::resource('contracts', ContractController::class);
+});
 
 require __DIR__.'/auth.php';
