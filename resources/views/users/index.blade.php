@@ -26,8 +26,8 @@
 
                     <!-- Check if the user is admin or moderator -->
                     @if(auth()->user()->isAdmin() || auth()->user()->isModerator())
-                        <div class="mb-4">
-                            <a href="{{ route('users.create') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-600">
+                         <div class="mb-4">
+                         <a href="{{ route('users.create') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-600">
                                 Create User
                             </a>
                         </div>
