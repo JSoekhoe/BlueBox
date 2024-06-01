@@ -27,6 +27,16 @@ class Strategy extends Model
         'Resource_needed',
     ];
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(AllowedBranch::class);
+    }
+
     // If Resource_needed is stored as JSON, cast it to array
     protected $casts = [
         'Resource_needed' => 'array',

@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContractController;
-use App\Http\Controllers\PDFcontroller;
+use App\Http\Controllers\ContactController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/customers/{customer}/update', [\App\Http\Controllers\CustomerController::class, 'update'])->name('customers.update');
     Route::post('/customers', [\App\Http\Controllers\CustomerController::class, 'store'])->name('customers.store');
     Route::delete('/customers/{customer}', [\App\Http\Controllers\CustomerController::class, 'destroy'])->name('customers.destroy');
+    Route::get('/customers/{customer}', [\App\Http\Controllers\CustomerController::class, 'show'])->name('customers.show'); 
+    Route::get('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'showStrategy'])->name('customers.strategy');
+    Route::post('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'storeStrategy'])->name('customers.strategy.store');
+    Route::get('/customers/{customer}/actions', [\App\Http\Controllers\CustomerController::class, 'showActions'])->name('customers.actions');
 });
 
 Route::middleware('auth')->group(function () {
@@ -58,5 +63,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::middleware('auth')->group(function () {
     Route::resource('contracts', ContractController::class);
 });
+
+Route::middleware('auth')->group(function () {
+    Route::resource('contacts', ContactController::class);
+});
+
 
 require __DIR__.'/auth.php';

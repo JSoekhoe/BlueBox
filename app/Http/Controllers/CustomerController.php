@@ -98,4 +98,53 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')->with('success', 'customer deleted successfully!');
     }
 
+
+    public function show($id)
+    {
+        $customer = Customer::with('branch')->findOrFail($id);
+        return view('customers.show', compact('customer'));
+    }
+
+    public function showStrategy($id)
+{
+    $customer = Customer::with('branch')->findOrFail($id);
+    // Add your strategy retrieval logic here
+    $strategy = []; // Replace with actual strategy data
+    return view('customers.strategy', compact('customer', 'strategy'));
+}
+
+    public function storeStrategy(Request $request, $customerId)
+{
+    // Validate the incoming request data
+    $validatedData = $request->validate([
+        'mastername' => 'required|string|max:255',
+        'summary' => 'required|string',
+        'today' => 'required|string',
+        'tomorrow' => 'required|string',
+        'how' => 'required|string',
+        'internal_alignment' => 'required|string',
+        'external_alignment' => 'required|string',
+        'resource_needed' => 'required|array',
+    ]);
+
+        
+    // Find the customer by ID
+    $customer = Customer::findOrFail($customerId);
+
+    // Create the strategy with the validated data
+    $strategy = $customer->strategies()->create($validatedData);
+
+    // Redirect the user after successfully creating the strategy
+    return redirect()->route('customers.show', $customerId)->with('success', 'Strategy created successfully!');
+}
+
+
+    public function showActions($id)
+    {
+        $customer = Customer::with('branch')->findOrFail($id);
+        // Add your actions retrieval logic here
+        $actions = []; // Replace with actual actions data
+        return view('customers.actions', compact('customer', 'actions'));
+    }
+
 }
