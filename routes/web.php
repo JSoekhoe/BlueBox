@@ -53,10 +53,14 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/parents', [AdminController::class, 'index'])->name('admin.parents.index');
     Route::get('/admin/add-parent', [AdminController::class, 'showAddParentForm'])->name('admin.showAddParentForm');
     Route::post('/admin/add-parent', [AdminController::class, 'storeParent'])->name('admin.storeParent');
+    Route::post('/admin/send-password-reset/{user}', [AdminController::class, 'sendPasswordReset'])->name('admin.send-password-reset');
+    Route::post('/admin/users/{user}/send-password-reset', [AdminController::class, 'sendPasswordReset'])->name('admin.users.send-password-reset');
 });
 
 Route::middleware('auth')->group(function () {
     Route::resource('contracts', ContractController::class);
 });
+
+
 
 require __DIR__.'/auth.php';
