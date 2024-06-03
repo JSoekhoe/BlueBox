@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AllowedBranch;
 use App\Models\Customer;
+use App\Models\Strategy;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -99,52 +100,18 @@ class CustomerController extends Controller
     }
 
 
-    public function show($id)
-    {
-        $customer = Customer::with('branch')->findOrFail($id);
-        return view('customers.show', compact('customer'));
-    }
-
+    
     public function showStrategy($id)
-{
-    $customer = Customer::with('branch')->findOrFail($id);
-    // Add your strategy retrieval logic here
-    $strategy = []; // Replace with actual strategy data
-    return view('customers.strategy', compact('customer', 'strategy'));
-}
-
-    public function storeStrategy(Request $request, $customerId)
-{
-    // Validate the incoming request data
-    $validatedData = $request->validate([
-        'mastername' => 'required|string|max:255',
-        'summary' => 'required|string',
-        'today' => 'required|string',
-        'tomorrow' => 'required|string',
-        'how' => 'required|string',
-        'internal_alignment' => 'required|string',
-        'external_alignment' => 'required|string',
-        'resource_needed' => 'required|array',
-    ]);
-
-        
-    // Find the customer by ID
-    $customer = Customer::findOrFail($customerId);
-
-    // Create the strategy with the validated data
-    $strategy = $customer->strategies()->create($validatedData);
-
-    // Redirect the user after successfully creating the strategy
-    return redirect()->route('customers.show', $customerId)->with('success', 'Strategy created successfully!');
-}
-
-
-    public function showActions($id)
     {
-        $customer = Customer::with('branch')->findOrFail($id);
-        // Add your actions retrieval logic here
-        $actions = []; // Replace with actual actions data
-        return view('customers.actions', compact('customer', 'actions'));
+        $customer = Customer::findOrFail($id);
+        $strategies = Strategy::where('ID_Strategy', $customer->strategy_id)->get();
+
+        return view('strategies.index', compact('strategies'));
     }
+
+    
+
+
+
 
 }

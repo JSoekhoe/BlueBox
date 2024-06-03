@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BBP_EmployerController;
+use App\Http\Controllers\StrategyController;
+use App\Http\Controllers\ActionController;
+
 
 
 /*
@@ -69,8 +73,16 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::resource('contacts', ContactController::class);
 });
+Route::middleware('auth')->group(function () {
+Route::resource('bbp_employers', BBP_EmployerController::class);
+});
 
+Route::middleware('auth')->group(function () {
+    Route::resource('strategies', StrategyController::class);
+    });
 
-
+Route::middleware('auth')->group(function () {
+Route::resource('actions', ActionController::class);
+        });
 
 require __DIR__.'/auth.php';

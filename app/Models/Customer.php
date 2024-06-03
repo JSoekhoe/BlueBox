@@ -35,7 +35,7 @@ class Customer extends Model
     {
         return $this->belongsTo(AllowedBranch::class);
     }
-    // Define the relationship with strategies
+    
     public function strategies()
     {
         return $this->hasMany(Strategy::class);
