@@ -30,18 +30,6 @@
                             <input id="email" class="block mt-1 w-full" type="email" name="email" required />
                         </div>
 
-                        <!-- Password -->
-                        <div class="mt-4">
-                            <label for="password">Password</label>
-                            <input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-                        </div>
-
-                        <!-- Confirm Password -->
-                        <div class="mt-4">
-                            <label for="password_confirmation">Confirm Password</label>
-                            <input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
-                        </div>
-
                         <!-- Role -->
                         <div class="mt-4">
                             <label for="role" class="block font-medium text-sm text-gray-700">Role</label>
@@ -53,9 +41,6 @@
                                 @endforeach
                             </select>
                         </div>
-
-
-
 
                         <!-- Branch -->
                         <div class="mt-4">
