@@ -41,6 +41,11 @@ class Customer extends Model
         return $this->hasMany(Strategy::class);
     }
 
+    public function ParentModel()
+    {
+        return $this->belongsTo(ParentModel::class);
+    }
+
     // Define the relationship with branch
  
 }
