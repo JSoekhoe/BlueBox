@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AllowedBranch;
 use App\Models\Customer;
+use App\Models\Strategy;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -97,5 +98,20 @@ class CustomerController extends Controller
         // Redirect the customer after successfully deleting the customer
         return redirect()->route('customers.index')->with('success', 'customer deleted successfully!');
     }
+
+
+    
+    public function showStrategy($id)
+    {
+        $customer = Customer::findOrFail($id);
+        $strategies = Strategy::where('ID_Strategy', $customer->strategy_id)->get();
+
+        return view('strategies.index', compact('strategies'));
+    }
+
+    
+
+
+
 
 }

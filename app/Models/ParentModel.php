@@ -1,21 +1,16 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class parents extends Model
+class ParentModel extends Model
 {
     use HasFactory;
 
-    // Define the table name if it does not follow Laravel's naming convention
     protected $table = 'parents';
-
-    // Specify the primary key if it is not 'id'
     protected $primaryKey = 'ID_Master';
 
-    // Specify the columns that can be mass-assigned
     protected $fillable = [
         'Mastername',
         'Category',
@@ -28,8 +23,23 @@ class parents extends Model
         'Focus',
     ];
 
-    // If Partner is stored as JSON, cast it to array
     protected $casts = [
         'Partner' => 'array',
+        'Focus' => 'boolean',
     ];
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class, 'parent_id');
+    }
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class, 'parent_id');
+    }
+
+    public function countries()
+    {
+        return $this->hasMany(Country::class, 'parent_id');
+    }
 }

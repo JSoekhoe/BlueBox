@@ -1,9 +1,15 @@
 <?php
 
+use App\Http\Controllers\ParentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContractController;
-use App\Http\Controllers\PDFcontroller;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BBP_EmployerController;
+use App\Http\Controllers\StrategyController;
+use App\Http\Controllers\ActionController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/customers/{customer}/update', [\App\Http\Controllers\CustomerController::class, 'update'])->name('customers.update');
     Route::post('/customers', [\App\Http\Controllers\CustomerController::class, 'store'])->name('customers.store');
     Route::delete('/customers/{customer}', [\App\Http\Controllers\CustomerController::class, 'destroy'])->name('customers.destroy');
+    Route::get('/customers/{customer}', [\App\Http\Controllers\CustomerController::class, 'show'])->name('customers.show'); 
+    Route::get('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'showStrategy'])->name('customers.strategy');
+    Route::post('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'storeStrategy'])->name('customers.strategy.store');
+    Route::get('/customers/{customer}/actions', [\App\Http\Controllers\CustomerController::class, 'showActions'])->name('customers.actions');
 });
 
 Route::middleware('auth')->group(function () {
@@ -50,9 +60,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/admin/parents', [AdminController::class, 'index'])->name('admin.parents.index');
-    Route::get('/admin/add-parent', [AdminController::class, 'showAddParentForm'])->name('admin.showAddParentForm');
-    Route::post('/admin/add-parent', [AdminController::class, 'storeParent'])->name('admin.storeParent');
+    //Route::get('/admin/parents', [AdminController::class, 'index'])->name('admin.parents.index');
+    //Route::get('/admin/add-parent', [AdminController::class, 'showAddParentForm'])->name('admin.showAddParentForm');
+   // Route::post('/admin/add-parent', [AdminController::class, 'storeParent'])->name('admin.storeParent');
     Route::post('/admin/send-password-reset/{user}', [AdminController::class, 'sendPasswordReset'])->name('admin.send-password-reset');
     Route::post('/admin/users/{user}/send-password-reset', [AdminController::class, 'sendPasswordReset'])->name('admin.users.send-password-reset');
 });
@@ -61,6 +71,24 @@ Route::middleware('auth')->group(function () {
     Route::resource('contracts', ContractController::class);
 });
 
+Route::middleware('auth')->group(function () {
+    Route::resource('contacts', ContactController::class);
+});
+Route::middleware('auth')->group(function () {
+Route::resource('bbp_employers', BBP_EmployerController::class);
+});
 
+Route::middleware('auth')->group(function () {
+    Route::resource('strategies', StrategyController::class);
+    });
+
+Route::middleware('auth')->group(function () {
+    Route::resource('actions', ActionController::class);
+});
+    
+Route::middleware('auth')->group(function () {
+    Route::resource('parents', ParentController::class);
+});
+       
 
 require __DIR__.'/auth.php';

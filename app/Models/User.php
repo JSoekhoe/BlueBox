@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+   
     protected $fillable = [
         'firstname',
         'lastname',
@@ -41,4 +43,6 @@ class User extends Authenticatable
     {
         return $this->role->role_name === 'Employee';
     }
+
+
 }

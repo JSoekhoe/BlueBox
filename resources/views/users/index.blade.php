@@ -1,8 +1,15 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Users') }}
-        </h2>
+<x-slot name="header">
+        <div class="flex items-center justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Users') }}
+            </h2>
+            <nav class="flex space-x-4">
+               <a href="{{ route('bbp_employers.index') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-600">
+                    {{ __('BBP Employers') }}
+                </a>
+            </nav>
+        </div>
     </x-slot>
 
     @if(auth()->user()->isEmployee())

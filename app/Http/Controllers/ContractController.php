@@ -19,10 +19,10 @@ class ContractController extends Controller
         return view('contracts.create');
     }
 
-    public function exportPdf()
-    {
-        return (new ContractsPdfExport())->download();
-    }
+    // public function exportPdf()
+    // {
+    //     return (new ContractsPdfExport())->download();
+    // }
 
     public function store(Request $request)
     {
@@ -45,4 +45,10 @@ class ContractController extends Controller
 
         return redirect()->route('contracts.index')->with('success', 'Contract created successfully.');
     }
+
+    public function edit($id)
+{
+    $contract = Contract::findOrFail($id);
+    return view('contracts.edit', compact('contract'));
+}
 }
