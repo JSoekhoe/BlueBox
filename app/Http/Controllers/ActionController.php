@@ -9,7 +9,8 @@ class ActionController extends Controller
 {
     public function index()
     {
-        $actions = Action::with('strategy', 'who', 'support')->get();
+        // Fetch related strategy without eager loading for users
+        $actions = Action::with(['strategy'])->get();
         return view('actions.index', compact('actions'));
     }
 
@@ -24,8 +25,8 @@ class ActionController extends Controller
         $validatedData = $request->validate([
             'ID_Strategy' => 'required|exists:strategies,ID_Strategy',
             'Action' => 'required|string|max:255',
-            'Who' => 'required|exists:users,id',
-            'Support' => 'required|exists:users,id',
+            'Who' => 'nullable|string|max:255',
+            'Support' => 'nullable|string|max:255',
             'When' => 'required|date',
             'Status' => 'required|string|max:255',
         ]);
@@ -47,8 +48,8 @@ class ActionController extends Controller
         $validatedData = $request->validate([
             'ID_Strategy' => 'required|exists:strategies,ID_Strategy',
             'Action' => 'required|string|max:255',
-            'Who' => 'required|exists:users,id',
-            'Support' => 'required|exists:users,id',
+            'Who' => 'nullable|string|max:255',
+            'Support' => 'nullable|string|max:255',
             'When' => 'required|date',
             'Status' => 'required|string|max:255',
         ]);
