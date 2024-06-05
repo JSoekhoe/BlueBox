@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ParentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContractController;
@@ -59,9 +60,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/admin/parents', [AdminController::class, 'index'])->name('admin.parents.index');
-    Route::get('/admin/add-parent', [AdminController::class, 'showAddParentForm'])->name('admin.showAddParentForm');
-    Route::post('/admin/add-parent', [AdminController::class, 'storeParent'])->name('admin.storeParent');
+    //Route::get('/admin/parents', [AdminController::class, 'index'])->name('admin.parents.index');
+    //Route::get('/admin/add-parent', [AdminController::class, 'showAddParentForm'])->name('admin.showAddParentForm');
+   // Route::post('/admin/add-parent', [AdminController::class, 'storeParent'])->name('admin.storeParent');
     Route::post('/admin/send-password-reset/{user}', [AdminController::class, 'sendPasswordReset'])->name('admin.send-password-reset');
     Route::post('/admin/users/{user}/send-password-reset', [AdminController::class, 'sendPasswordReset'])->name('admin.users.send-password-reset');
 });
@@ -82,7 +83,12 @@ Route::middleware('auth')->group(function () {
     });
 
 Route::middleware('auth')->group(function () {
-Route::resource('actions', ActionController::class);
-        });
+    Route::resource('actions', ActionController::class);
+});
+    
+Route::middleware('auth')->group(function () {
+    Route::resource('parents', ParentController::class);
+});
+       
 
 require __DIR__.'/auth.php';

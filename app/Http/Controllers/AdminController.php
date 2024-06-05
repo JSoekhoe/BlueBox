@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Customer;
 use App\Models\AllowedBranch;
 use Illuminate\Http\Request;
@@ -16,12 +17,12 @@ class AdminController extends Controller
     public function index()
 {
     $parents = Parent::all(); // Fetch all parents
-    return view('admin.parents.index', compact('parents'));
+    return view('parents.index', compact('parents'));
 }
     public function showAddParentForm()
     {
         $branches = AllowedBranch::all();
-        return view('admin\add-parent', compact('branches'));
+        return view('parents.index', compact('branches'));
     }
 
     public function storeParent(Request $request)

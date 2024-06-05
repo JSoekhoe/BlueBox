@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
-use App\Models\Parents;
+use App\Models\ParentModel;
 
 class ContactController extends Controller
 {
@@ -16,7 +16,7 @@ class ContactController extends Controller
 
     public function create()
     {
-        $parents = Parents::all();
+        $parents = ParentModel::all();
         return view('contacts.create', compact('parents'));
     }
 
@@ -40,14 +40,14 @@ class ContactController extends Controller
 
     public function edit(Contact $contact)
     {
-        $parents = Parents::all();
+        $parents = ParentModel::all();
         return view('contacts.edit', compact('contact', 'parents'));
     }
 
     public function update(Request $request, Contact $contact)
     {
         $data = $request->validate([
-            'ID_Master' => 'required|exists:parents,ID_Master',
+            //'ID_Master' => 'required|exists:parents,ID_Master',
             'gender' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
