@@ -18,6 +18,8 @@ class CreateActionsTable extends Migration
             $table->string('Status');
             $table->timestamps();
 
+
+            
         });
     }
 
