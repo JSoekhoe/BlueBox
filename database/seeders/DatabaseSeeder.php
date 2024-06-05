@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
                 'branch_name' => 'Bluebox Partners',
                 'role_name' => 'admin',
             ],
+            
             [
                 'firstname' => 'moderator',
                 'lastname' => 'Bluebox',
