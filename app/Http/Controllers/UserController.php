@@ -105,4 +105,13 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully!');
     }
+
+    public function sendPasswordReset(Request $request, User $user)
+    {
+        $status = Password::sendResetLink(['email' => $user->email]);
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with('status', 'Password reset link sent successfully.')
+            : back()->withErrors(['email' => 'Failed to send password reset link.']);
+    }
 }
