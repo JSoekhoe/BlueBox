@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\ActionController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BBP_EmployerController;
 use App\Http\Controllers\StrategyController;
-use App\Http\Controllers\ActionController;
 
 
 
@@ -48,6 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'showStrategy'])->name('customers.strategy');
     Route::post('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'storeStrategy'])->name('customers.strategy.store');
     Route::get('/customers/{customer}/actions', [\App\Http\Controllers\CustomerController::class, 'showActions'])->name('customers.actions');
+    Route::get('customers/{customer}/notes', [\App\Http\Controllers\CustomerController::class, 'notes'])->name('customers.notes');
+    Route::put('customers/{customer}/notes', [\App\Http\Controllers\CustomerController::class, 'updateNotes'])->name('customers.updateNotes');
 });
 
 Route::middleware('auth')->group(function () {
@@ -67,6 +71,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/admin/users/{user}/send-password-reset', [AdminController::class, 'sendPasswordReset'])->name('admin.users.send-password-reset');
 });
 
+
+Route::middleware('auth')->group(function () {
+    Route::resource('actions', ActionController::class);
+});
+
+
 Route::middleware('auth')->group(function () {
     Route::resource('contracts', ContractController::class);
 });
@@ -82,13 +92,19 @@ Route::middleware('auth')->group(function () {
     Route::resource('strategies', StrategyController::class);
     });
 
-Route::middleware('auth')->group(function () {
-    Route::resource('actions', ActionController::class);
-});
-    
+
 Route::middleware('auth')->group(function () {
     Route::resource('parents', ParentController::class);
 });
-       
+
+Route::middleware('auth')->group(function () {
+    Route::resource('partners', PartnerController::class);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::resource('categories', CategoryController::class);
+});
+
+    
 
 require __DIR__.'/auth.php';

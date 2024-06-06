@@ -23,7 +23,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'ID_Master' => 'required|exists:parents,ID_Master',
+        //    'ID_Master' => 'required|exists:parents,ID_Master',
             'gender' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -52,7 +52,7 @@ class ContactController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
-            'email' => 'required|email|unique:contacts,email,' . $contact->id,
+            'email' => 'required|email|unique:contacts,email,' ,
             'phone' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
         ]);

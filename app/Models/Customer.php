@@ -28,6 +28,7 @@ class Customer extends Model
         'email',
         'password',        
         'branch_id',
+        'notes',
     ];
 
 
@@ -45,6 +46,8 @@ class Customer extends Model
     {
         return $this->belongsTo(ParentModel::class);
     }
+
+   
 
     // Define the relationship with branch
  

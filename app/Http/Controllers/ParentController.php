@@ -1,13 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ParentModel; // Assuming you have a Parent model
+use App\Models\ParentModel;
 
 class ParentController extends Controller
 {
-    /**
+    /**php
      * Display a listing of the resource.
      */
     public function index()
@@ -33,18 +32,22 @@ class ParentController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:parents,email',
-            'phone' => 'required|string|max:20',
+            'Mastername' => 'required|string|max:255',
+            'Category' => 'nullable|string|max:255',
+            'Contract_expiration' => 'nullable|date',
+            'Contract_type' => 'nullable|string|max:255',
+            'European_SM_short' => 'nullable|string|max:255',
+            'European_SM_long' => 'nullable|string|max:255',
+            'Partner' => 'nullable|array',
+            'Partner.*' => 'nullable|string|max:255',
+            'Focus' => 'nullable|boolean',
+            'contract_id' => 'required|exists:contracts,id',
         ]);
 
-        // Create a new parent in the database
-        Parent::create($validated);
+        ParentModel::create($validated);
 
-        // Redirect to the parents index with a success message
-        return redirect()->route('parents.index')->with('success', 'Parent created successfully.');
+        return redirect()->route('parents.index')->with('success', 'Parent added successfully.');
     }
 
     /**
@@ -53,7 +56,7 @@ class ParentController extends Controller
     public function show(string $id)
     {
         // Find the parent by ID
-        $parent = Parent::findOrFail($id);
+        $parent = ParentModel::findOrFail($id);
         
         // Return a view with the parent data
         return view('parents.show', compact('parent'));
@@ -65,7 +68,7 @@ class ParentController extends Controller
     public function edit(string $id)
     {
         // Find the parent by ID
-        $parent = Parent::findOrFail($id);
+        $parent = ParentModel::findOrFail($id);
         
         // Return a view to edit the parent
         return view('parents.edit', compact('parent'));
@@ -78,13 +81,18 @@ class ParentController extends Controller
     {
         // Validate the incoming request data
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:parents,email,' . $id,
-            'phone' => 'required|string|max:20',
+            'Mastername' => 'required|string|max:255',
+            'Category' => 'nullable|string',
+            'Contract_expiration' => 'nullable|date',
+            'Contract_type' => 'nullable|string',
+            'European_SM_short' => 'nullable|string',
+            'European_SM_long' => 'nullable|string',
+            'Partner' => 'nullable|array',
+            'Focus' => 'nullable|boolean',
         ]);
 
         // Find the parent by ID and update it
-        $parent = Parent::findOrFail($id);
+        $parent = ParentModel::findOrFail($id);
         $parent->update($validated);
 
         // Redirect to the parents index with a success message
@@ -97,7 +105,7 @@ class ParentController extends Controller
     public function destroy(string $id)
     {
         // Find the parent by ID and delete it
-        $parent = Parent::findOrFail($id);
+        $parent = ParentModel::findOrFail($id);
         $parent->delete();
 
         // Redirect to the parents index with a success message

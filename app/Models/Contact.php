@@ -4,13 +4,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Contact extends Model
 {
     use HasFactory;
 
     // Specify the columns that can be mass-assigned
     protected $fillable = [
-        'ID_Master',
+        //'ID_Master',
         'gender',
         'first_name',
         'last_name',
@@ -20,8 +21,9 @@ class Contact extends Model
         'location',
     ];
 
+   
     public function parent()
-    {
-        return $this->belongsTo(Parents::class, 'ID_Master', 'ID_Master');
-    }
+{
+    return $this->belongsTo(ParentModel::class);
+}
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,17 +26,13 @@ class Action extends Model
         return $this->belongsTo(Strategy::class, 'ID_Strategy', 'ID_Strategy');
     }
 
-    public function who()
-    {
-        return $this->belongsTo(User::class, 'Who', 'id');
-    }
+    // public function creator()
+    // {
+    //     return $this->belongsTo(User::class, 'Who', 'id');
+    // }
 
-    public function support()
-    {
-        return $this->belongsTo(User::class, 'Support', 'id');
-    }
-    public function users()
-{
-    return $this->belongsToMany(User::class)->withTimestamps();
-}
+    // public function supporter()
+    // {
+    //     return $this->belongsTo(User::class, 'Support', 'id');
+    // }
 }

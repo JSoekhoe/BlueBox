@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Partner;
+use Illuminate\Http\Request;
 
 class PartnerController extends Controller
 {
@@ -20,11 +20,11 @@ class PartnerController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'Partner_name' => 'required|string|max:255|unique:partners,Partner_name',
+        $request->validate([
+            'Partner_name' => 'required|string|max:255|unique:partners',
         ]);
 
-        Partner::create($data);
+        Partner::create($request->all());
 
         return redirect()->route('partners.index')->with('success', 'Partner created successfully.');
     }
@@ -36,11 +36,11 @@ class PartnerController extends Controller
 
     public function update(Request $request, Partner $partner)
     {
-        $data = $request->validate([
+        $request->validate([
             'Partner_name' => 'required|string|max:255|unique:partners,Partner_name,' . $partner->id,
         ]);
 
-        $partner->update($data);
+        $partner->update($request->all());
 
         return redirect()->route('partners.index')->with('success', 'Partner updated successfully.');
     }

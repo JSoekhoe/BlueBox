@@ -51,7 +51,7 @@ class StrategyController extends Controller
             'How' => 'nullable|string',
             'Internal_alignment' => 'nullable|string',
             'External_alignment' => 'nullable|string',
-            'Resource_needed' => 'nullable|array',
+            'Resource_needed' => 'nullable|string',
         ]);
 
         $strategy = Strategy::findOrFail($id);
