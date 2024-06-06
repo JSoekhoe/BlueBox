@@ -97,11 +97,11 @@
                                                 <button type="submit" class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-600">DELETE</button>
                                             </form>
                                         @endif
-                                        @if(auth()->user()->isAdmin() || auth()->user()->isModerator())
-                                            <form action="{{ route('admin.users.send-password-reset', $user) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to send a password reset link to this user?');">
-                                                @csrf
-                                                <button type="submit" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-600">Send Password Reset</button>
-                                            </form>
+                                        @if(auth()->user()->isAdmin())
+                                                <form action="{{ route('admin.users.send-password-reset', $user) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to send a password reset link to this user?');">
+                                                    @csrf
+                                                    <button type="submit" class="text-green-600 dark:text-green-400 hover:text-green-900 dark:hover:text-green-600">Send Password Reset</button>
+                                                </form>
                                         @endif
                                     </td>
                                 </tr>

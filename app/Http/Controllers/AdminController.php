@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\AllowedBranch;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -49,7 +51,7 @@ class AdminController extends Controller
 
     return redirect()->route('admin.showAddParentForm')->with('success', 'Parent added successfully!');
     }
-    public function sendPasswordReset(Request $request, UserController $user)
+    public function sendPasswordReset(Request $request, User $user)
     {
         // Send password reset link to the user
         $status = Password::sendResetLink(
@@ -61,3 +63,4 @@ class AdminController extends Controller
             : back()->withErrors(['email' => 'Failed to send password reset link.']);
     }
 }
+
