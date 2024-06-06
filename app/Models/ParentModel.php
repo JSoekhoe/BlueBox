@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,37 +10,14 @@ class ParentModel extends Model
     use HasFactory;
 
     protected $table = 'parents';
-    protected $primaryKey = 'ID_Master';
 
     protected $fillable = [
-        'Mastername',
-        'Category',
-        'Contract_expiration',
-        'Contract_type',
-        'European_SM_short',
-        'European_SM_long',
-        'ID_Partner',
-        'Partner',
-        'Focus',
+        'Mastername', 'Category', 'Contract_expiration', 'Contract_type', 
+        'European_SM_short', 'European_SM_long', 'Partner', 'Focus', 'contract_id'
     ];
 
-    protected $casts = [
-        'Partner' => 'array',
-        'Focus' => 'boolean',
-    ];
-
-    public function customers()
+    public function contract()
     {
-        return $this->hasMany(Customer::class, 'parent_id');
-    }
-
-    public function contacts()
-    {
-        return $this->hasMany(Contact::class, 'parent_id');
-    }
-
-    public function countries()
-    {
-        return $this->hasMany(Country::class, 'parent_id');
+        return $this->belongsTo(Contract::class);
     }
 }
