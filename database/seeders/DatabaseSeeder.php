@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\Partner;
 
 class DatabaseSeeder extends Seeder
 {
@@ -118,5 +119,9 @@ class DatabaseSeeder extends Seeder
                 'branch_id' => $branchId,
             ]);
         }
+
+        // Seed partners
+        
+        
     }
 }

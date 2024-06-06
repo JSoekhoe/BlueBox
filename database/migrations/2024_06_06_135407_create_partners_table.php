@@ -6,28 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePartnersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('bbp_employers', function (Blueprint $table) {
-            $table->id('ID_partner');
+        Schema::create('partners', function (Blueprint $table) {
+            $table->id();
             $table->string('Partner_name');
-            
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('bbp_employers');
+        Schema::dropIfExists('partners');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContractController;
@@ -91,6 +92,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::resource('parents', ParentController::class);
 });
-       
+
+Route::middleware('auth')->group(function () {
+    Route::resource('partners', PartnerController::class);
+});
 
 require __DIR__.'/auth.php';
