@@ -23,6 +23,10 @@
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Strategies</h3>
                     <a href="{{ route('strategies.index') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-600">View Strategies</a>
                 </div>
+                <div class="p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">partners</h3>
+                    <a href="{{ route('partners.index') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-600">View Parents</a>
+                </div>
             </div>
         </div>
     </div>
