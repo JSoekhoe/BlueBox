@@ -8,16 +8,18 @@ class UpdateActionsTable extends Migration
     public function up()
     {
         Schema::table('actions', function (Blueprint $table) {
-            $table->string('Who')->nullable()->change();
-            $table->string('Support')->nullable()->change();
+            // Change the columns 'Who' and 'Support' to text type
+            $table->text('Who')->nullable()->change();
+            $table->text('Support')->nullable()->change();
         });
     }
 
     public function down()
     {
         Schema::table('actions', function (Blueprint $table) {
-            $table->unsignedBigInteger('Who')->nullable(false)->change();
-            $table->unsignedBigInteger('Support')->nullable(false)->change();
+            // Revert the columns 'Who' and 'Support' back to their original types
+            $table->text('Who')->nullable(false)->change();
+            $table->text('Support')->nullable(false)->change();
         });
     }
 }

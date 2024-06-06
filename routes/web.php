@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'showStrategy'])->name('customers.strategy');
     Route::post('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'storeStrategy'])->name('customers.strategy.store');
     Route::get('/customers/{customer}/actions', [\App\Http\Controllers\CustomerController::class, 'showActions'])->name('customers.actions');
+    Route::get('customers/{customer}/notes', [\App\Http\Controllers\CustomerController::class, 'notes'])->name('customers.notes');
+    Route::put('customers/{customer}/notes', [\App\Http\Controllers\CustomerController::class, 'updateNotes'])->name('customers.updateNotes');
 });
 
 Route::middleware('auth')->group(function () {
