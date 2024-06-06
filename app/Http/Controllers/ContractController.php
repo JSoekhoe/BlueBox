@@ -38,7 +38,6 @@ class ContractController extends Controller
             'cto_value' => 'nullable|numeric',
             'sob' => 'required|boolean',
             'sob_value' => 'nullable|numeric',
-            'customer_id' => 'required|exists:customers,id',
         ]);
 
         Contract::create($validated);

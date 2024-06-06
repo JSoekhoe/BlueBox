@@ -1,8 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Actions') }}
-        </h2>
+        <div class="flex items-center justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Actions') }}
+            </h2>
+            <nav class="flex space-x-4">
+                <a href="{{ route('strategies.index') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-600">
+                    {{ __('Strategies') }}
+                </a>
+            </nav>
+        </div>
     </x-slot>
 
     <div class="py-6 px-4 md:py-12 md:px-6 lg:px-8 flex justify-center">
@@ -25,8 +32,8 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead>
                                 <tr>
-                                    <th class="px-4 py-2 md:px-6 md:py-3">ID_Action</th>
-                                    <th class="px-4 py-2 md:px-6 md:py-3">ID_Strategy</th>
+                                    <th class="px-4 py-2 md:px-6 md:py-3">ID Action</th>
+                                    <th class="px-4 py-2 md:px-6 md:py-3">ID Strategy</th>
                                     <th class="px-4 py-2 md:px-6 md:py-3">Action</th>
                                     <th class="px-4 py-2 md:px-6 md:py-3">Who</th>
                                     <th class="px-4 py-2 md:px-6 md:py-3">Support</th>
@@ -37,6 +44,7 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700">
                                 @foreach($actions as $action)
+                                dd($action)
                                     <tr>
                                         <td class="px-4 py-2 md:px-6 md:py-3">{{ $action->ID_Action }}</td>
                                         <td class="px-4 py-2 md:px-6 md:py-3">{{ $action->strategy->ID_Strategy }}</td>

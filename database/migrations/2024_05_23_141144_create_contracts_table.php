@@ -22,8 +22,6 @@ class CreateContractsTable extends Migration
             $table->decimal('cto_value', 5, 2)->nullable();
             $table->boolean('sob');
             $table->decimal('sob_value', 15, 2)->nullable();
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ActionController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Route;
@@ -8,7 +10,6 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BBP_EmployerController;
 use App\Http\Controllers\StrategyController;
-use App\Http\Controllers\ActionController;
 
 
 
@@ -70,6 +71,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/admin/users/{user}/send-password-reset', [AdminController::class, 'sendPasswordReset'])->name('admin.users.send-password-reset');
 });
 
+
+Route::middleware('auth')->group(function () {
+    Route::resource('actions', ActionController::class);
+});
+
+
 Route::middleware('auth')->group(function () {
     Route::resource('contracts', ContractController::class);
 });
@@ -85,10 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('strategies', StrategyController::class);
     });
 
-Route::middleware('auth')->group(function () {
-    Route::resource('actions', ActionController::class);
-});
-    
+
 Route::middleware('auth')->group(function () {
     Route::resource('parents', ParentController::class);
 });
@@ -96,5 +100,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::resource('partners', PartnerController::class);
 });
+
+Route::middleware('auth')->group(function () {
+    Route::resource('categories', CategoryController::class);
+});
+
+    
 
 require __DIR__.'/auth.php';
