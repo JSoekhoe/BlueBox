@@ -21,10 +21,11 @@
                     <x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.index')">
                         {{ __('Customers') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('parents.index')" :active="request()->routeIs('parents.index')">
+                    @if(Auth::user() && Auth::user()->isAdmin())
+                     <x-nav-link :href="route('parents.index')" :active="request()->routeIs('parents.index')">
                         {{ __('Parents') }}
                     </x-nav-link>
-
+                    @endif
                 </div>
             </div>
 

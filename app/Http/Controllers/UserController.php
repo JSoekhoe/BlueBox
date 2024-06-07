@@ -14,18 +14,28 @@ use App\Notifications\UserRegistered;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        $users = [];
+  public function index(Request $request)
+{
+    $query = User::query();
 
-        if (auth()->user()->isAdmin()) {
-            $users = User::all();
-        } else {
-            $users = User::where('branch_id', auth()->user()->branch_id)->get();
-        }
-
-        return view('users.index', compact('users'));
+    // If a search query is present, filter users based on the search input
+    if ($request->has('search')) {
+        $search = $request->input('search');
+        $query->where('firstname', 'LIKE', "%$search%")
+              ->orWhere('lastname', 'LIKE', "%$search%")
+              ->orWhere('email', 'LIKE', "%$search%");
     }
+
+    // Filter users based on user role and branch if applicable
+    if (!auth()->user()->isAdmin()) {
+        $query->where('branch_id', auth()->user()->branch_id);
+    }
+
+    // Fetch users based on the constructed query
+    $users = $query->get();
+
+    return view('users.index', compact('users'));
+}
 
     public function create()
     {

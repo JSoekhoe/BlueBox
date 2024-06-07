@@ -16,11 +16,17 @@ class AdminController extends Controller
 {
 
 
-    public function index()
+    
+public function index()
 {
+    if (!auth()->user()->isAdmin()) {
+        return redirect()->route('dashboard')->withErrors(['You do not have access to this page.']);
+    }
+
     $parents = Parent::all(); // Fetch all parents
     return view('parents.index', compact('parents'));
 }
+
     public function showAddParentForm()
     {
         $branches = AllowedBranch::all();
