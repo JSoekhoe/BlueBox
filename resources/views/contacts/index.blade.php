@@ -8,8 +8,7 @@
     <div class="py-6 px-4 md:py-12 md:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-4 md:p-6 text-gray-900 dark:text-gray-100">
-                <a href="{{ route('contacts.create') }}" class="btn btn-primary mb-4">Add Contact</a>
-
+                <a href="{{ route('contacts.create') }}" class="btn btn-primary mb-4 text-blue-600">Add Contact</a>
                 @if(session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}

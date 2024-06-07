@@ -9,7 +9,7 @@ class Strategy extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'ID_Strategy';
+    protected $primaryKey = 'strategy_id';
 
     protected $fillable = [
         'Mastername',
@@ -21,14 +21,4 @@ class Strategy extends Model
         'External_alignment',
         'Resource_needed',
     ];
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }
-
-    public function branch()
-    {
-        return $this->belongsTo(AllowedBranch::class);
-    }
-    
 }

@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/customers/{customer}/update', [\App\Http\Controllers\CustomerController::class, 'update'])->name('customers.update');
     Route::post('/customers', [\App\Http\Controllers\CustomerController::class, 'store'])->name('customers.store');
     Route::delete('/customers/{customer}', [\App\Http\Controllers\CustomerController::class, 'destroy'])->name('customers.destroy');
-    Route::get('/customers/{customer}', [\App\Http\Controllers\CustomerController::class, 'show'])->name('customers.show'); 
+    Route::get('/customers/{customer}', [\App\Http\Controllers\CustomerController::class, 'show'])->name('customers.show');
     Route::get('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'showStrategy'])->name('customers.strategy');
     Route::post('/customers/{customer}/strategy', [\App\Http\Controllers\CustomerController::class, 'storeStrategy'])->name('customers.strategy.store');
     Route::get('/customers/{customer}/actions', [\App\Http\Controllers\CustomerController::class, 'showActions'])->name('customers.actions');
@@ -63,34 +63,47 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{user}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });
 
-Route::group(['middleware' => ['auth', 'admin']], function () {
-    //Route::get('/admin/parents', [AdminController::class, 'index'])->name('admin.parents.index');
-    //Route::get('/admin/add-parent', [AdminController::class, 'showAddParentForm'])->name('admin.showAddParentForm');
-   // Route::post('/admin/add-parent', [AdminController::class, 'storeParent'])->name('admin.storeParent');
-    Route::post('/admin/send-password-reset/{user}', [AdminController::class, 'sendPasswordReset'])->name('admin.send-password-reset');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/parents', [AdminController::class, 'index'])->name('admin.parents.index');
+    Route::get('/admin/parents/add', [AdminController::class, 'showAddParentForm'])->name('admin.showAddParentForm');
+    Route::post('/admin/parents', [AdminController::class, 'storeParent'])->name('admin.storeParent');
     Route::post('/admin/users/{user}/send-password-reset', [AdminController::class, 'sendPasswordReset'])->name('admin.users.send-password-reset');
 });
 
 
+
 Route::middleware('auth')->group(function () {
-    Route::resource('actions', ActionController::class);
+    Route::get('/actions', [\App\Http\Controllers\ActionController::class, 'index'])->name('actions.index');
+    Route::get('/actions/create', [\App\Http\Controllers\ActionController::class, 'create'])->name('actions.create');
+    Route::post('/actions', [\App\Http\Controllers\ActionController::class, 'store'])->name('actions.store');
+    Route::get('/actions/{action}/edit', [\App\Http\Controllers\ActionController::class, 'edit'])->name('actions.edit');
+    Route::patch('/actions/{action}', [\App\Http\Controllers\ActionController::class, 'update'])->name('actions.update');
+    Route::delete('/actions/{action}', [\App\Http\Controllers\ActionController::class, 'destroy'])->name('actions.destroy');
 });
 
 
 Route::middleware('auth')->group(function () {
     Route::resource('contracts', ContractController::class);
+    Route::get('contracts/{contract}/pdf', [ContractController::class, 'convertToPDF'])->name('contracts.pdf');
 });
 
 Route::middleware('auth')->group(function () {
     Route::resource('contacts', ContactController::class);
 });
+
 Route::middleware('auth')->group(function () {
 Route::resource('bbp_employers', BBP_EmployerController::class);
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('strategies', StrategyController::class);
-    });
+    Route::get('/strategies', [\App\Http\Controllers\StrategyController::class, 'index'])->name('strategies.index');
+    Route::get('/strategies/create', [\App\Http\Controllers\StrategyController::class, 'create'])->name('strategies.create');
+    Route::get('/strategies/{strategy}/edit', [\App\Http\Controllers\StrategyController::class, 'edit'])->name('strategies.edit');
+    Route::patch('/strategies/{strategy}/update', [\App\Http\Controllers\StrategyController::class, 'update'])->name('strategies.update');
+    Route::post('/strategies', [\App\Http\Controllers\StrategyController::class, 'store'])->name('strategies.store');
+    Route::delete('/strategies/{strategy}', [\App\Http\Controllers\StrategyController::class, 'destroy'])->name('strategies.destroy');
+});
 
 
 Route::middleware('auth')->group(function () {
@@ -105,6 +118,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('categories', CategoryController::class);
 });
 
-    
+
 
 require __DIR__.'/auth.php';
