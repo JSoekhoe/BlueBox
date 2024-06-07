@@ -44,7 +44,7 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700">
                                 @foreach($actions as $action)
-                                dd($action)
+                                
                                     <tr>
                                         <td class="px-4 py-2 md:px-6 md:py-3">{{ $action->ID_Action }}</td>
                                         <td class="px-4 py-2 md:px-6 md:py-3">{{ $action->strategy->ID_Strategy }}</td>
