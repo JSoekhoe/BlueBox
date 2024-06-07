@@ -7,6 +7,10 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use App\Notifications\UserRegistered;
 
 class UserController extends Controller
 {
@@ -15,10 +19,8 @@ class UserController extends Controller
         $users = [];
 
         if (auth()->user()->isAdmin()) {
-            // If the user is an admin, fetch all users
             $users = User::all();
         } else {
-            // If the user is not an admin, fetch users based on their branch
             $users = User::where('branch_id', auth()->user()->branch_id)->get();
         }
 
@@ -34,27 +36,29 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the incoming request data
         $validatedData = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
             'role' => 'required|exists:roles,id',
             'branch' => 'required|exists:allowed_branches,id',
         ]);
 
-        // Create the user with the validated data
+        // Generate a random password
+        $password = Str::random(10);
+
         $user = User::create([
             'firstname' => $validatedData['firstname'],
             'lastname' => $validatedData['lastname'],
             'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
+            'password' => Hash::make($password),
             'role_id' => $validatedData['role'],
             'branch_id' => $validatedData['branch'],
         ]);
 
-        // Redirect the user after successfully creating the user
+        // Send the notification to the user
+        $user->notify(new UserRegistered($user, $password));
+
         return redirect()->route('users.index')->with('success', 'User created successfully!');
     }
 
@@ -65,9 +69,9 @@ class UserController extends Controller
         $branches = AllowedBranch::all();
         return view('users.edit', compact('user', 'roles', 'branches'));
     }
+
     public function update(Request $request, $id)
     {
-        // Validate the incoming request data
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -77,38 +81,37 @@ class UserController extends Controller
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
-        // Find the user by ID
         $user = User::findOrFail($id);
 
-        // Update user attributes
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->role_id = $request->role;
         $user->branch_id = $request->branch;
 
-        // Check if password is provided and update it if necessary
         if ($request->has('password')) {
-            $user->password = bcrypt($request->password);
+            $user->password = Hash::make($request->password);
         }
 
-        // Save the updated user
         $user->save();
 
-        // Redirect the user after successfully updating the user
         return redirect()->route('users.index')->with('success', 'User updated successfully!');
     }
 
     public function destroy($id)
     {
-        // Find the user by ID
         $user = User::findOrFail($id);
-
-        // Delete the user
         $user->delete();
 
-        // Redirect the user after successfully deleting the user
         return redirect()->route('users.index')->with('success', 'User deleted successfully!');
     }
 
+    public function sendPasswordReset(Request $request, User $user)
+    {
+        $status = Password::sendResetLink(['email' => $user->email]);
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with('status', 'Password reset link sent successfully.')
+            : back()->withErrors(['email' => 'Failed to send password reset link.']);
+    }
 }

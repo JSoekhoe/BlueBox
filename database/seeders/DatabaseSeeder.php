@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\Partner;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $roles = [
             ['role_name' => 'admin'],
             ['role_name' => 'moderator'],
-            ['role_name' => 'Employee'],
+            ['role_name' => 'employee'],
         ];
 
         foreach ($roles as $role) {
@@ -49,6 +50,7 @@ class DatabaseSeeder extends Seeder
                 'branch_name' => 'Bluebox Partners',
                 'role_name' => 'admin',
             ],
+            
             [
                 'firstname' => 'moderator',
                 'lastname' => 'Bluebox',
@@ -71,7 +73,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'employee@bluebox.nl',
                 'password' => bcrypt('employee'),
                 'branch_name' => 'Family1',
-                'role_name' => 'moderator',
+                'role_name' => 'employee',
             ],
             // Add more users as needed
         ];
@@ -117,5 +119,9 @@ class DatabaseSeeder extends Seeder
                 'branch_id' => $branchId,
             ]);
         }
+
+        // Seed partners
+        
+        
     }
 }
