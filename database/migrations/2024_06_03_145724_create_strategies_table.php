@@ -8,7 +8,7 @@ class CreateStrategiesTable extends Migration
     public function up()
     {
         Schema::create('strategies', function (Blueprint $table) {
-            $table->id('ID_Strategy');
+            $table->id('strategy_id'); // Corrected to strategy_id
             $table->string('Mastername');
             $table->text('Summary')->nullable();
             $table->text('Today')->nullable();
@@ -16,11 +16,12 @@ class CreateStrategiesTable extends Migration
             $table->text('How')->nullable();
             $table->text('Internal_alignment')->nullable();
             $table->text('External_alignment')->nullable();
-            $table->text('Resource_needed')->nullable(); // Change JSON to text
+            $table->text('Resource_needed')->nullable();
             $table->timestamps();
         });
     }
-    
+
+
     public function down()
     {
         Schema::dropIfExists('strategies');

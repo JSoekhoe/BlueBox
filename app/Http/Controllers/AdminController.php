@@ -53,10 +53,7 @@ class AdminController extends Controller
     }
     public function sendPasswordReset(Request $request, User $user)
     {
-        // Send password reset link to the user
-        $status = Password::sendResetLink(
-            ['email' => $user->email]
-        );
+        $status = Password::sendResetLink(['email' => $user->email]);
 
         return $status === Password::RESET_LINK_SENT
             ? back()->with('status', 'Password reset link sent successfully.')

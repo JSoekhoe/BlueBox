@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\Strategy;
 use Illuminate\Http\Request;
+use App\Models\Strategy;
 
 class StrategyController extends Controller
 {
@@ -35,13 +36,14 @@ class StrategyController extends Controller
         return redirect()->route('strategies.index')->with('success', 'Strategy created successfully!');
     }
 
-    public function edit($id)
+    public function edit($strategy_id)
     {
-        $strategy = Strategy::findOrFail($id);
+        $strategy = Strategy::findOrFail($strategy_id);
         return view('strategies.edit', compact('strategy'));
     }
 
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Strategy $strategy)
     {
         $validatedData = $request->validate([
             'Mastername' => 'required|string|max:255',
@@ -54,17 +56,17 @@ class StrategyController extends Controller
             'Resource_needed' => 'nullable|string',
         ]);
 
-        $strategy = Strategy::findOrFail($id);
         $strategy->update($validatedData);
 
         return redirect()->route('strategies.index')->with('success', 'Strategy updated successfully!');
     }
 
-    public function destroy($id)
+
+    public function destroy(Strategy $strategy)
     {
-        $strategy = Strategy::findOrFail($id);
         $strategy->delete();
 
         return redirect()->route('strategies.index')->with('success', 'Strategy deleted successfully!');
     }
+
 }

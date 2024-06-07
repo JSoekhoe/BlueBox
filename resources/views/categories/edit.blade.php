@@ -9,7 +9,7 @@
         <div class="w-full md:w-2/3">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-4 md:p-6 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="{{ route('categories.update', $category->id) }}">
+                    <form method="POST" action="{{ route('categories.update', $category->ID_Cat) }}">
                         @csrf
                         @method('PUT')
                         <div class="mb-4">

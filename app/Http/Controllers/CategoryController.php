@@ -31,29 +31,29 @@ class CategoryController extends Controller
             ->with('success', 'Category created successfully.');
     }
 
-    public function edit($id)
+    public function edit($ID_Cat)
     {
-        $category = Category::find($id);
+        $category = Category::find($ID_Cat);
         return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $ID_Cat)
     {
         $request->validate([
             'Category' => 'required',
             'Description' => 'required',
         ]);
 
-        $category = Category::find($id);
+        $category = Category::find($ID_Cat);
         $category->update($request->all());
 
         return redirect()->route('categories.index')
             ->with('success', 'Category updated successfully.');
     }
 
-    public function destroy($id)
+    public function destroy($ID_Cat)
     {
-        Category::destroy($id);
+        Category::destroy($ID_Cat);
 
         return redirect()->route('categories.index')
             ->with('success', 'Category deleted successfully.');
