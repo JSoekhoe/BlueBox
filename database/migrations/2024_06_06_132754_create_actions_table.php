@@ -8,20 +8,19 @@ class CreateActionsTable extends Migration
 {
     public function up()
     {
-        if (!Schema::hasTable('actions')) {
-            Schema::create('actions', function (Blueprint $table) {
-                $table->unsignedBigInteger('ID_Strategy');
-                $table->string('Action');
-                $table->text('Who')->nullable();
-                $table->text('Support')->nullable();
-                $table->dateTime('When');
-                $table->string('Status');
-                $table->timestamps();
+        Schema::create('actions', function (Blueprint $table) {
+            $table->id('action_id');
+            $table->unsignedBigInteger('strategy_id');
+            $table->string('Action');
+            $table->text('Who')->nullable();
+            $table->text('Support')->nullable();
+            $table->dateTime('When');
+            $table->string('Status');
+            $table->timestamps();
 
-                // Define foreign key constraints
-            
-            });
-        }
+            // Define foreign key constraint
+            $table->foreign('strategy_id')->references('Strategy_id')->on('strategies')->onDelete('cascade');
+        });
     }
 
     public function down()

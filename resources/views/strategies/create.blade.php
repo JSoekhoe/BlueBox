@@ -6,67 +6,67 @@
     </x-slot>
 
     <div class="py-6 px-4 md:py-12 md:px-6 lg:px-8 flex justify-center">
-    <div class="w-full md:w-2/3"> <!-- Adjusted width -->
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-4 md:p-6 text-gray-900 dark:text-gray-100">
-                @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+        <div class="w-full lg:w-3/4">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-4 md:p-6 text-gray-900 dark:text-gray-100">
+                    <form method="POST" action="{{ route('strategies.store') }}">
+                        @csrf
 
-                <form action="{{ route('strategies.store') }}" method="POST">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="Mastername" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Mastername</label>
-                        <input type="text" name="Mastername" id="Mastername" class="mt-1 block w-full" value="{{ old('Mastername') }}">
-                    </div>
+                        <!-- Mastername -->
+                        <div class="mb-4">
+                            <label for="Mastername" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Mastername</label>
+                            <input type="text" name="Mastername" id="Mastername" class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md">
+                        </div>
 
-                    <div class="mb-4">
-                        <label for="Summary" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Summary</label>
-                        <textarea name="Summary" id="Summary" class="mt-1 block w-full">{{ old('Summary') }}</textarea>
-                    </div>
+                        <!-- Summary -->
+                        <div class="mb-4">
+                            <label for="Summary" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Summary</label>
+                            <textarea name="Summary" id="Summary" class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md"></textarea>
+                        </div>
 
-                    <div class="mb-4">
-                        <label for="Today" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Today</label>
-                        <input type="text" name="Today" id="Today" class="mt-1 block w-full" value="{{ old('Today') }}">
-                    </div>
+                        <!-- Today -->
+                        <div class="mb-4">
+                            <label for="Today" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Today</label>
+                            <textarea name="Today" id="Today" class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md"></textarea>
+                        </div>
 
-                    <div class="mb-4">
-                        <label for="Tomorrow" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tomorrow</label>
-                        <input type="text" name="Tomorrow" id="Tomorrow" class="mt-1 block w-full" value="{{ old('Tomorrow') }}">
-                    </div>
+                        <!-- Tomorrow -->
+                        <div class="mb-4">
+                            <label for="Tomorrow" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tomorrow</label>
+                            <textarea name="Tomorrow" id="Tomorrow" class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md"></textarea>
+                        </div>
 
-                    <div class="mb-4">
-                        <label for="How" class="block text-sm font-medium text-gray-700 dark:text-gray-300">How</label>
-                        <input type="text" name="How" id="How" class="mt-1 block w-full" value="{{ old('How') }}">
-                    </div>
+                        <!-- How -->
+                        <div class="mb-4">
+                            <label for="How" class="block text-sm font-medium text-gray-700 dark:text-gray-300">How</label>
+                            <textarea name="How" id="How" class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md"></textarea>
+                        </div>
 
-                    <div class="mb-4">
-                        <label for="Internal_alignment" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Internal Alignment</label>
-                        <input type="text" name="Internal_alignment" id="Internal_alignment" class="mt-1 block w-full" value="{{ old('Internal_alignment') }}">
-                    </div>
+                        <!-- Internal Alignment -->
+                        <div class="mb-4">
+                            <label for="Internal_alignment" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Internal Alignment</label>
+                            <textarea name="Internal_alignment" id="Internal_alignment" class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md"></textarea>
+                        </div>
 
-                    <div class="mb-4">
-                        <label for="External_alignment" class="block text-sm font-medium text-gray-700 dark:text-gray-300">External Alignment</label>
-                        <input type="text" name="External_alignment" id="External_alignment" class="mt-1 block w-full" value="{{ old('External_alignment') }}">
-                    </div>
+                        <!-- External Alignment -->
+                        <div class="mb-4">
+                            <label for="External_alignment" class="block text-sm font-medium text-gray-700 dark:text-gray-300">External Alignment</label>
+                            <textarea name="External_alignment" id="External_alignment" class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md"></textarea>
+                        </div>
 
-                    <div class="mb-4">
-                        <label for="Resource_needed" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Resource Needed</label>
-                        <input type="text" name="Resource_needed" id="Resource_needed" class="mt-1 block w-full" value="{{ old('Resource_needed') }}">
-                    </div>
+                        <!-- Resource Needed -->
+                        <div class="mb-4">
+                            <label for="Resource_needed" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Resource Needed</label>
+                            <textarea name="Resource_needed" id="Resource_needed" class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md"></textarea>
+                        </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        <x-primary-button class="ml-4">
-                            {{ __('Create') }}
-                        </x-primary-button>
-                    </div>
-                </form>
+                        <div class="flex items-center justify-end mt-4">
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md">
+                                Create Strategy
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
